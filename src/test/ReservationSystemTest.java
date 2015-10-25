@@ -2,7 +2,9 @@ package test;
 
 import static org.junit.Assert.assertEquals;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import org.junit.Test;
 
@@ -10,11 +12,18 @@ import main.Hotel;
 import main.Reservation;
 
 public class ReservationSystemTest {
-	
 	@Test
 	public void shouldBeAbleToFindCheapestHotelForRegularCustomer(){
-		Reservation reservation = new Reservation();
-		assertEquals(Hotel.bridgewood, reservation.findCheapestHotelFor("Regular", new Date()));
+		List<Hotel> hotels = new ArrayList<Hotel>(){
+			{
+				add(new Hotel("Lakewood", 3, 110, 80, 90, 80));
+				add(new Hotel("Bridgewood", 4, 160, 110, 60, 50));
+				add(new Hotel("Ridgewood", 5, 220, 100, 150, 40));
+			}
+		};
+
+		Reservation reservation = new Reservation(hotels);
+		assertEquals(new Hotel("Bridgewood", 4, 160, 110, 60, 50), reservation.findCheapestHotelFor("Regular", new Date()));
 	}
 
 }

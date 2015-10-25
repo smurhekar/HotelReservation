@@ -1,14 +1,23 @@
 package main;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 public class Reservation {
+	
+	
+	private List<Hotel> hotels;
+
+	public Reservation(List<Hotel> hotels) {
+		this.hotels = hotels;
+	}
 
 	public Hotel findCheapestHotelFor(String customerType, Date date) {
-		boolean isDayOfWeeek = isDayOfWeek(date);
+		boolean isDayOfWeeek = isWeekDay(date);
 		Hotel cheapestHotel = null;
-		for(Hotel hotel: Hotel.hotels){
+		for(Hotel hotel: hotels){
 			if(customerType.equals("Regular")){
 				double hotelRate = hotel.getHotelRate(isDayOfWeeek);
 				if(null != cheapestHotel){
@@ -24,7 +33,7 @@ public class Reservation {
 		return cheapestHotel;
 	}
 
-	private boolean isDayOfWeek(Date date) {
+	private boolean isWeekDay(Date date) {
 		boolean isDayOfWeeek;
 		Calendar cal = Calendar.getInstance();
 		cal.setTime(date);
