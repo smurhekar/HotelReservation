@@ -12,31 +12,11 @@ public class Hotel {
 	private double weekendRateForRewards;
 	private String name;
 	
-	public double getWeekdayRateForRegular() {
-		return weekdayRateForRegular;
+	public double getHotelRate(boolean isDayOfWeeek) {
+		return isDayOfWeeek ? weekdayRateForRegular : weekendRateForRegular;
 	}
 
-	public double getWeekdayRateForRewards() {
-		return weekdayRateForRewards;
-	}
-
-	public double getWeekendRateForRegular() {
-		return weekendRateForRegular;
-	}
-
-	public double getWeekendRateForRewards() {
-		return weekendRateForRewards;
-	}
-	
-	public int getRating(){
-		return rating;
-	}
-	
-	public String getName(){
-		return name;
-	}
-
-	Hotel(String name, int rating, double weekdayRateForRegular, double weekdayRateForRewards, 
+	private Hotel(String name, int rating, double weekdayRateForRegular, double weekdayRateForRewards, 
 			double weekendRateForRegular, double weekendRateForRewards) {
 		this.name = name;
 		this.rating = rating;
@@ -57,4 +37,7 @@ public class Hotel {
 		}
 	};
 
+	public Hotel clone(){
+		return new Hotel(name, rating, weekdayRateForRegular, weekdayRateForRewards, weekendRateForRegular, weekendRateForRewards);
+	}
 }

@@ -10,15 +10,14 @@ public class Reservation {
 		Hotel cheapestHotel = null;
 		for(Hotel hotel: Hotel.hotels){
 			if(customerType.equals("Regular")){
-				double hotelRate = isDayOfWeeek ? hotel.getWeekdayRateForRegular() : hotel.getWeekendRateForRegular();
+				double hotelRate = hotel.getHotelRate(isDayOfWeeek);
 				if(null != cheapestHotel){
-					double cheapestHotelRate = isDayOfWeeek ? cheapestHotel.getWeekdayRateForRegular() : cheapestHotel.getWeekendRateForRegular();
+					double cheapestHotelRate = cheapestHotel.getHotelRate(isDayOfWeeek);
 					if(hotelRate < cheapestHotelRate){
 						cheapestHotel = hotel;
 					}
 				}else{
-					cheapestHotel = new Hotel(hotel.getName(), hotel.getRating(), hotel.getWeekdayRateForRegular(), hotel.getWeekdayRateForRewards(), 
-							hotel.getWeekendRateForRegular(), hotel.getWeekendRateForRewards());
+					cheapestHotel = hotel.clone();
 				} 
 			}
 		}

@@ -6,6 +6,7 @@ import java.util.Date;
 
 import org.junit.Test;
 
+import main.Hotel;
 import main.Reservation;
 
 public class ReservationSystemTest {
@@ -13,7 +14,7 @@ public class ReservationSystemTest {
 	@Test
 	public void shouldBeAbleToFindCheapestHotelForRegularCustomer(){
 		Reservation reservation = new Reservation();
-		assertEquals("Bridgewood",reservation.findCheapestHotelFor("Regular", new Date()).getName());
+		assertEquals(Hotel.bridgewood, reservation.findCheapestHotelFor("Regular", new Date()));
 	}
 
 }
