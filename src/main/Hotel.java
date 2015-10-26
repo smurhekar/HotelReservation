@@ -10,7 +10,7 @@ public class Hotel {
 	private double weekendRateForRewards;
 	private String name;
 	
-	public double getHotelRate(boolean isDayOfWeeek) {
+	public double getHotelRegularRate(boolean isDayOfWeeek) {
 		return isDayOfWeeek ? weekdayRateForRegular : weekendRateForRegular;
 	}
 

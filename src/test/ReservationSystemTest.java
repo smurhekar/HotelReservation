@@ -3,6 +3,7 @@ package test;
 import static org.junit.Assert.assertEquals;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -23,7 +24,9 @@ public class ReservationSystemTest {
 		};
 
 		Reservation reservation = new Reservation(hotels);
-		assertEquals(new Hotel("Bridgewood", 4, 160, 110, 60, 50), reservation.findCheapestHotelFor("Regular", new Date()));
+        Calendar calDate = Calendar.getInstance();
+        calDate.set(2015,9,25);
+		assertEquals(new Hotel("Bridgewood", 4, 160, 110, 60, 50), reservation.findCheapestHotelFor("Regular", calDate.getTime()));
 	}
 
 }

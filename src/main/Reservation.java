@@ -1,6 +1,5 @@
 package main;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -19,15 +18,9 @@ public class Reservation {
 		Hotel cheapestHotel = null;
 		for(Hotel hotel: hotels){
 			if(customerType.equals("Regular")){
-				double hotelRate = hotel.getHotelRate(isDayOfWeeek);
-				if(null != cheapestHotel){
-					double cheapestHotelRate = cheapestHotel.getHotelRate(isDayOfWeeek);
-					if(hotelRate < cheapestHotelRate){
-						cheapestHotel = hotel;
-					}
-				}else{
-					cheapestHotel = hotel.clone();
-				} 
+                if(null == cheapestHotel || hotel.getHotelRegularRate(isDayOfWeeek) < cheapestHotel.getHotelRegularRate(isDayOfWeeek)){
+                    cheapestHotel = hotel.clone();
+                }
 			}
 		}
 		return cheapestHotel;
