@@ -14,11 +14,11 @@ public class Reservation {
 	}
 
 	public Hotel findCheapestHotelFor(String customerType, Date date) {
-		boolean isDayOfWeeek = isWeekDay(date);
+		boolean isWeeekDay = isWeekDay(date);
 		Hotel cheapestHotel = null;
 		for(Hotel hotel: hotels){
 			if(customerType.equals("Regular")){
-                if(null == cheapestHotel || hotel.getHotelRegularRate(isDayOfWeeek) < cheapestHotel.getHotelRegularRate(isDayOfWeeek)){
+                if(hotel.isCheaperThan(cheapestHotel, isWeeekDay)){
                     cheapestHotel = hotel.clone();
                 }
 			}

@@ -43,4 +43,8 @@ public class Hotel {
 				&& hotel.weekendRateForRewards == this.weekendRateForRewards
 				&& hotel.name.equals(this.name));
 	}
+
+	boolean isCheaperThan(Hotel hotel, boolean isWeeekDay) {
+		return null == hotel || this.getHotelRegularRate(isWeeekDay) < hotel.getHotelRegularRate(isWeeekDay);
+	}
 }
