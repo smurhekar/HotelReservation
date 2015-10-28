@@ -13,19 +13,11 @@ public class Reservation {
 		this.hotels = hotels;
 	}
 
-	public Hotel findCheapestHotelFor(String customerType, Date date) {
-		boolean isWeeekDay = isWeekDay(date);
+	public Hotel findCheapestHotelFor(CustomerStrategy customerType, Date date) {
+		boolean isWeekDay = isWeekDay(date);
 		Hotel cheapestHotel = null;
 		for(Hotel hotel: hotels){
-			if(customerType.equals("Regular")){
-                if(hotel.isRegularCheaperThan(cheapestHotel, isWeeekDay)){
-                    cheapestHotel = hotel.clone();
-                }
-			}else if(customerType.equals("Rewards")){
-				if(hotel.isRewardsCheaperThan(cheapestHotel, isWeeekDay)){
-                    cheapestHotel = hotel.clone();
-                }
-			}
+			cheapestHotel = customerType.getCheaperHotel(cheapestHotel, hotel, isWeekDay);
 		}
 		return cheapestHotel;
 	}

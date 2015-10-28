@@ -7,7 +7,9 @@ import java.util.Calendar;
 import java.util.List;
 
 import main.Hotel;
+import main.Regular;
 import main.Reservation;
+import main.Rewards;
 
 import org.junit.Test;
 
@@ -25,7 +27,7 @@ public class ReservationSystemTest {
 		Reservation reservation = new Reservation(hotels);
         Calendar calDate = Calendar.getInstance();
         calDate.set(2015,9,25);
-		assertEquals(new Hotel("Bridgewood", 4, 160, 110, 60, 50), reservation.findCheapestHotelFor("Regular", calDate.getTime()));
+		assertEquals(new Hotel("Bridgewood", 4, 160, 110, 60, 50), reservation.findCheapestHotelFor(new Regular(), calDate.getTime()));
 	}
 	
 	@Test
@@ -41,7 +43,7 @@ public class ReservationSystemTest {
 		Reservation reservation = new Reservation(hotels);
         Calendar calDate = Calendar.getInstance();
         calDate.set(2015,9,25);
-		assertEquals(new Hotel("Ridgewood", 5, 220, 100, 150, 40), reservation.findCheapestHotelFor("Rewards", calDate.getTime()));
+		assertEquals(new Hotel("Ridgewood", 5, 220, 100, 150, 40), reservation.findCheapestHotelFor(new Rewards(), calDate.getTime()));
 
 	}
 
