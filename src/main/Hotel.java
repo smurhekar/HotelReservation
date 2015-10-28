@@ -10,8 +10,12 @@ public class Hotel {
 	private double weekendRateForRewards;
 	private String name;
 	
-	public double getHotelRegularRate(boolean isDayOfWeeek) {
-		return isDayOfWeeek ? weekdayRateForRegular : weekendRateForRegular;
+	public double getHotelRegularRate(boolean isWeeekDay) {
+		return isWeeekDay ? weekdayRateForRegular : weekendRateForRegular;
+	}
+	
+	private double getHotelRewardsRate(boolean isWeeekDay) {
+		return isWeeekDay ? weekdayRateForRewards : weekendRateForRewards;
 	}
 
 	public Hotel(String name, int rating, double weekdayRateForRegular, double weekdayRateForRewards, 
@@ -29,6 +33,16 @@ public class Hotel {
 		return new Hotel(name, rating, weekdayRateForRegular, weekdayRateForRewards, weekendRateForRegular, weekendRateForRewards);
 	}
 	
+	boolean isRegularCheaperThan(Hotel cheapestHotel, boolean isWeeekDay) {
+		return null == cheapestHotel || this.getHotelRegularRate(isWeeekDay) < cheapestHotel.getHotelRegularRate(isWeeekDay);
+	}
+	
+	public boolean isRewardsCheaperThan(Hotel cheapestHotel, boolean isWeeekDay) {
+		return null == cheapestHotel || this.getHotelRewardsRate(isWeeekDay) < cheapestHotel.getHotelRewardsRate(isWeeekDay);
+	}
+	
+	
+
 	@Override
 	public boolean equals(Object object){
 		if(object == this)
@@ -44,7 +58,4 @@ public class Hotel {
 				&& hotel.name.equals(this.name));
 	}
 
-	boolean isCheaperThan(Hotel hotel, boolean isWeeekDay) {
-		return null == hotel || this.getHotelRegularRate(isWeeekDay) < hotel.getHotelRegularRate(isWeeekDay);
-	}
 }

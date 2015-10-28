@@ -18,7 +18,11 @@ public class Reservation {
 		Hotel cheapestHotel = null;
 		for(Hotel hotel: hotels){
 			if(customerType.equals("Regular")){
-                if(hotel.isCheaperThan(cheapestHotel, isWeeekDay)){
+                if(hotel.isRegularCheaperThan(cheapestHotel, isWeeekDay)){
+                    cheapestHotel = hotel.clone();
+                }
+			}else if(customerType.equals("Rewards")){
+				if(hotel.isRewardsCheaperThan(cheapestHotel, isWeeekDay)){
                     cheapestHotel = hotel.clone();
                 }
 			}
